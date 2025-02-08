@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landslide Susceptibility Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Landslide Susceptibility Tool</h1>
+        <form method="POST">
+            <label for="slope_angle">Slope Angle (°):</label>
+            <input type="number" id="slope_angle" name="slope_angle" step="0.1" required>
+
+            <label for="soil_type">Soil Type:</label>
+            <select id="soil_type" name="soil_type" required>
+                <option value="clay">Clay</option>
+                <option value="sand">Sand</option>
+                <option value="silt">Silt</option>
+            </select>
+
+            <label for="rainfall_intensity">Rainfall Intensity:</label>
+            <select id="rainfall_intensity" name="rainfall_intensity" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if risk_level %}
+        <div class="result">
+            <h2>Result:</h2>
+            <p>Landslide Susceptibility: <strong>{{ risk_level }}</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
